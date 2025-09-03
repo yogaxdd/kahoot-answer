@@ -1,5 +1,6 @@
 const fetchBtn = document.getElementById("fetchBtn");
 const exportBtn = document.getElementById("exportBtn");
+const showAllBtn = document.getElementById("showAllBtn");
 const quizInput = document.getElementById("quizInput");
 const quizInfo = document.getElementById("quizInfo");
 const questionsContainer = document.getElementById("questionsContainer");
@@ -14,6 +15,7 @@ const noResults = document.getElementById("noResults");
 
 let allQuestions = [];
 let exportedText = "";
+let showAllAnswers = false;
 
 fetchBtn.addEventListener("click", async () => {
   const input = quizInput.value.trim();
@@ -85,6 +87,24 @@ exportBtn.addEventListener("click", () => {
   URL.revokeObjectURL(url);
 });
 
+showAllBtn.addEventListener("click", () => {
+  showAllAnswers = !showAllAnswers;
+  showAllBtn.classList.toggle("active", showAllAnswers);
+  showAllBtn.innerHTML = showAllAnswers 
+    ? '<i class="fas fa-eye-slash"></i> Show Correct Only'
+    : '<i class="fas fa-eye"></i> Show All Answers';
+  
+  if (allQuestions.length > 0) {
+    const filtered = searchInput.value.toLowerCase() ? 
+      allQuestions.filter(q => {
+        const qText = q.question?.toLowerCase() || "";
+        const corrects = q.choices?.filter(c => c.correct).map(c => c.answer.toLowerCase()).join(" ") || "";
+        return qText.includes(searchInput.value.toLowerCase()) || corrects.includes(searchInput.value.toLowerCase());
+      }) : allQuestions;
+    renderQuestions(filtered);
+  }
+});
+
 function show(...elms) {
   elms.forEach(e => e.classList.remove("hidden"));
 }
@@ -112,13 +132,34 @@ function renderQuestions(questions) {
       html += `<div class="slide-title">${stripHTML(q.title)}</div>`;
       if (q.description) html += `<div class="slide-description">${stripHTML(q.description)}</div>`;
     } else {
-      html += `
-        <div class="question-text">${stripHTML(q.question)}</div>
-        <div class="answer-section">
-          <div class="answer-label"><i class="fas fa-check-circle"></i> Correct Answer:</div>
-          <div class="answer-text">${q.choices.filter(c => c.correct).map(c => stripHTML(c.answer)).join(", ") || "No correct answer"}</div>
-        </div>
-      `;
+      html += `<div class="question-text">${stripHTML(q.question)}</div>`;
+      
+      if (showAllAnswers && q.choices && q.choices.length > 0) {
+        html += `
+          <div class="answer-section">
+            <div class="answer-label"><i class="fas fa-list"></i> All Answers:</div>
+            <div class="all-answers">
+        `;
+        q.choices.forEach(choice => {
+          const isCorrect = choice.correct;
+          html += `
+            <div class="answer-option ${isCorrect ? 'correct' : 'incorrect'}">
+              ${stripHTML(choice.answer)}
+            </div>
+          `;
+        });
+        html += `
+            </div>
+          </div>
+        `;
+      } else {
+        html += `
+          <div class="answer-section">
+            <div class="answer-label"><i class="fas fa-check-circle"></i> Correct Answer:</div>
+            <div class="answer-text">${q.choices.filter(c => c.correct).map(c => stripHTML(c.answer)).join(", ") || "No correct answer"}</div>
+          </div>
+        `;
+      }
     }
     card.innerHTML = html;
     questionsContainer.appendChild(card);

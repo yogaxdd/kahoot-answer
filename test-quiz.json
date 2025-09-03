@@ -1,0 +1,51 @@
+{
+  "uuid": "ece8ea12-27be-4b8d-b7e9-4b2e23cff3ac",
+  "title": "The Sun, Space Weather, and You (Part 2)",
+  "creator_username": "NASA_Official",
+  "questions": [
+    {
+      "type": "quiz",
+      "question": "What elements primarily make up our Sun?",
+      "choices": [
+        {
+          "answer": "Molten iron (Fe) and tungsten (W)",
+          "correct": false
+        },
+        {
+          "answer": "Solid sodium (Na) and chlorine (Cl)",
+          "correct": false
+        },
+        {
+          "answer": "A secret blend of 11 plasmas and types of gasoline",
+          "correct": false
+        },
+        {
+          "answer": "Gaseous helium (He) and hydrogen (H)",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What is the <b>solar wind</b> made of?",
+      "choices": [
+        {
+          "answer": "Solar surfers and sunspots",
+          "correct": false
+        },
+        {
+          "answer": "Magnetic fields and charged particles (plasma)",
+          "correct": true
+        },
+        {
+          "answer": "Hot air",
+          "correct": false
+        },
+        {
+          "answer": "Charged particles (plasma) and magnetic monopoles",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}
