@@ -32,7 +32,7 @@ fetchBtn.addEventListener("click", async () => {
       const data = await res.json();
       quizId = data.id;
     } catch {
-      return showError("Gagal mengambil quiz ID dari PIN.");
+      return showError("Tidak Mendukung Pin Kahoot, Gunakan QuizID.");
     }
   }
 
@@ -53,7 +53,7 @@ fetchBtn.addEventListener("click", async () => {
     show(quizInfo, questionsContainer);
     hide(errorMessage, noResults);
   } catch {
-    return showError("Gagal mengambil data quiz. Pastikan ID/PIN valid.");
+    return showError("Gagal mengambil data quiz. Pastikan QuizID valid.");
   } finally {
     hide(loadingSpinner);
   }
@@ -181,4 +181,13 @@ function buildExportText(data, questions) {
 }
 function stripHTML(html) {
   return html?.replace(/<[^>]*>/g, "").replace(/\\"/g, '"') || "";
+}
+
+// Open image in new tab when Show Image button is clicked
+const imageButton = document.getElementById('showImageBtn');
+if (imageButton) {
+  imageButton.addEventListener('click', () => {
+    // open relative path in new tab
+    window.open('img/image.png', '_blank');
+  });
 }

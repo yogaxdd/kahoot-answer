@@ -427,6 +427,20 @@ body {
     display: none !important;
 }
 
+.input-help-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-image {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 .footer {
     text-align: center;
     padding: 20px;
