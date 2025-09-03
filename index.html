@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YogaxD Kahoot Hack!</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papAPFjRquCO5CJyqDLvq9vLRxNnZzEqVz+q0ZK47o0Z8u5FvqRJYp8DpCJuHP+uKXhUlXZPbR1zF+/9F4Wewg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <i class="fas fa-brain"></i>
+        <h1>YogaxD Kahoot Hack!</h1>
+      </div>
+      <p class="subtitle">Enter a Quiz ID or PIN to view questions and answers</p>
+    </header>
+
+    <div class="input-section">
+      <div class="input-group">
+        <input type="text" id="quizInput" placeholder="Enter Quiz ID or PIN..." maxlength="50" />
+        <button id="fetchBtn" class="btn-primary">
+          <i class="fas fa-search"></i> Fetch Quiz
+        </button>
+      </div>
+      <div class="input-help">
+        <p><i class="fas fa-info-circle"></i> Enter a Kahoot Quiz ID or game PIN (e.g., 123456)</p>
+      </div>
+    </div>
+
+    <div id="loadingSpinner" class="loading hidden">
+      <div class="spinner"></div>
+      <p>Fetching quiz data...</p>
+    </div>
+
+    <div id="errorMessage" class="error-message hidden">
+      <i class="fas fa-exclamation-triangle"></i>
+      <span id="errorText"></span>
+    </div>
+
+    <div id="quizInfo" class="quiz-info hidden">
+      <div class="quiz-header">
+        <h2 id="quizTitle"></h2>
+        <div class="quiz-meta">
+          <span class="meta-item"><i class="fas fa-user"></i><span id="quizCreator"></span></span>
+          <span class="meta-item"><i class="fas fa-question-circle"></i><span id="questionCount"></span> questions</span>
+        </div>
+      </div>
+      <div class="search-section">
+        <div class="search-group">
+          <input type="text" id="searchInput" placeholder="Search questions and answers..." />
+          <i class="fas fa-search search-icon"></i>
+        </div>
+        <div class="export-section">
+          <button id="exportBtn" class="btn-secondary">
+            <i class="fas fa-download"></i> Export Answers
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="questionsContainer" class="questions-container hidden"></div>
+
+    <div id="noResults" class="no-results hidden">
+      <i class="fas fa-search"></i>
+      <p>No questions match your search</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Enhanced Kahoot Quiz Viewer | Tools by @yogakokxd</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
